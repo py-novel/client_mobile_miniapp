@@ -1,3 +1,6 @@
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content"> 公羊阅读</view>
+</cu-custom>
 <view class="navbar" style="background-color: rgb(244, 243, 249)">
   公羊阅读
 </view>
