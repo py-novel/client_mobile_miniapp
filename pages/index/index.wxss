@@ -1,4 +1,4 @@
-/* 个人信息 */
+/* 个人信息
 .profile {
   height: 160rpx;
   background-color: rgb(244, 243, 249);
@@ -35,7 +35,7 @@
 }
 
 /* 书架列表 */
-.shelf {
+/* .shelf {
   width: 90%;
   margin: 20rpx auto;
   padding: 20rpx;
@@ -90,11 +90,11 @@
   display:-webkit-box;
   -webkit-box-orient:vertical;
   -webkit-line-clamp:2;
-}
+} */
 
 /* 书架列表为空 */
-.shelf-empty {
+/* .shelf-empty {
   margin-top: 40rpx;
   margin-left: 40rpx;
   font-size: 30rpx;
-}
+} */ 

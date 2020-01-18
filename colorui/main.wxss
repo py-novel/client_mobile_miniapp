@@ -50,6 +50,7 @@ page {
 	--gradualPurple: linear-gradient(45deg, #9000ff, #5e00ff);
 	--gradualPink: linear-gradient(45deg, #ec008c, #6739b6);
 	--gradualBlue: linear-gradient(45deg, #0081ff, #1cbbb4);
+	--gradualBlack: linear-gradient(45deg, #000000, #666666);
 	/* 阴影透明色 */
 	--ShadowSize: 6rpx 6rpx 8rpx;
 	--redShadow: rgba(204, 69, 59, 0.2);
@@ -3604,6 +3605,11 @@ scroll-view.cu-steps .cu-item {
 
 .bg-gradual-blue {
 	background-image: var(--gradualBlue);
+	color: var(--white);
+}
+
+.bg-gradual-black {
+	background-image: var(--gradualBlack);
 	color: var(--white);
 }
 

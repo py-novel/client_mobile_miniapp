@@ -1,51 +1,67 @@
-<cu-custom bgColor="bg-gradual-blue">
-  <view slot="content"> 公羊阅读</view>
-</cu-custom>
-<view class="navbar" style="background-color: rgb(244, 243, 249)">
-  公羊阅读
-</view>
-
-<!-- 个人信息 -->
-<view class="profile">
-  <view class="avatar">
-    <image class="avatar-image" 
-      src="{{userInfo.avatarUrl || '../../images/default_avatar.png'}}"></image>
-  </view>
-
-  <view class="nickname" wx:if="{{userInfo.nickName}}">
-    {{greeting}}{{userInfo.nickName}}
-  </view>
-  <view class="nickname" wx:else>
-    <button open-type="getUserInfo" class="user-btn"
-      bindgetuserinfo="handleUpdateUserInfo">获取微信昵称</button>
-  </view>
-
-  <view class="setting">
-    <image class="icon" 
-      bindtap="handleSetting"
-      src="../../images/{{ settingEnable ? 'back' : 'setting' }}.png"></image>
-  </view>
-</view>
-
-<!-- 书架列表 -->
-<view class="shelf" wx:if="{{novelList.length > 0}}">
-  <view class="shelf-item" wx:for="{{novelList}}" wx:key="{{item.chapter_url}}">
-    <!-- 书本信息 -->
-    <view class="shelf-wrapper" bindtap="handleGoReadPage" data-id="{{item.id}}"
-      data-url="{{item.recent_chapter_url}}" data-bookname="{{item.book_name}}">
-      <image class="shelf-cover" src="../../images/cover.png"></image>
-      <view class="shelf-novelname">{{item.book_name}}</view>
-      <view class="shelf-authorname">{{item.author_name}}</view>
+<scroll-view scroll-y class="scrollPage">
+  <cu-custom bgColor="bg-gradual-black">
+    <view slot="content"> 公羊阅读</view>
+  </cu-custom>
+  <!-- 个人信息 -->
+  <view class="flex solid-bottom padding align-center">
+    <view class="padding">
+      <view class="cu-avatar xl round margin-left" style="background-image:url({{userInfo.avatarUrl || '../../images/default_avatar.png'}});"></view>
     </view>
 
-    <!-- 删除按钮 -->
-    <view class="btn-remove" wx:if="{{settingEnable}}" 
-      bindtap="handleRemoveNovel" data-id="{{item.id}}">
-      <image class="icon" src="../../images/remove.png"></image>
+    <view class=" radius padding-sm" wx:if="{{userInfo.nickName}}">
+      <view class="solid-bottom text-xl padding text-shadow text-grey">
+        <text class="text-bold"> {{greeting}}{{userInfo.nickName}}</text>
+      </view>
+
+    </view>
+
+    <view class="nickname" wx:else>
+      <button open-type="getUserInfo" class="user-btn" bindgetuserinfo="handleUpdateUserInfo">获取微信昵称</button>
+    </view>
+    <!-- <view class="setting">
+      <image class="icon" bindtap="handleSetting" src="../../images/{{ settingEnable ? 'back' : 'setting' }}.png"></image>
+    </view> -->
+  </view>
+  <view class="cu-list menu card-menu margin-bottom-xl shadow-lg radius">
+    <view class="cu-item">
+      <view class="content">
+        <text class="text-grey">书籍总收藏数量：{{novelList.length}} 本</text>
+      </view>
+      <view class="action">
+        <button class="cu-btn bg-grey shadow" bindtap="handleSetting">编辑</button>
+      </view>
     </view>
   </view>
-</view>
+  <!-- <view class="cu-tabbar-height"></view> -->
 
-<view wx:else class="shelf-empty">
-还没有书籍，去书屋找一找吧~
-</view>
+  <!-- 书架列表 -->
+  <view wx:if="{{novelList.length > 0}}">
+    <view class="grid col-3 padding-sm">
+      <view wx:for="{{novelList}}" wx:key="{{item.chapter_url}}">
+        <!-- 书本信息 -->
+        <view bindtap="handleGoReadPage" data-id="{{item.id}}" data-url="{{item.recent_chapter_url}}" data-bookname="{{item.book_name}}">
+          <view class="padding-sm">
+            <view class="bg-gradual-black padding radius text-center shadow-blur">
+
+              <view wx:if="{{settingEnable}}" catchtap="handleRemoveNovel" data-id="{{item.id}}">
+                <view class="cu-tag badge">X</view>
+              </view>
+
+              <view class="text-lg">{{item.book_name}}</view>
+              <view>_</view>
+              <view class="margin-top-sm text-Abc">{{item.author_name}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:else>
+    <view class="padding text-shadow text-grey">
+      <view class="text-center padding">还没有收藏的书籍，去书屋找一找吧</view>
+    </view>
+  </view>
+
+
+</scroll-view>

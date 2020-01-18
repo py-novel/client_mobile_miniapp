@@ -1,35 +1,47 @@
-<view class="container">
-  <view class="navbar">
-    公羊阅读
-  </view>
-
+<scroll-view scroll-y class="scrollPage">
+  <cu-custom bgColor="bg-gradual-blue">
+    <view slot="content"> 公羊阅读</view>
+  </cu-custom>
   <!-- 搜索 -->
-  <view class="search">
-    <view class="input" bindtap="handleGoSearchPage">
-      <image class="icon" src="../../images/search.png"></image>
-      <view style="margin-left: 20rpx">搜索</view>
+ <view class="padding flex flex-direction">
+  <button class="cu-btn bg-gradual-blue lg">搜 索</button>
+</view>
+  <!-- <view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px;">
+      <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input type="text" placeholder="输入搜索的关键词" confirm-type="search"></input>
+      </view>
+      <view class="action">
+        <button class="cu-btn bg-gradual-green shadow-blur round" bindtap="handleGoSearchPage">搜索</button>
+      </view>
+    </view> -->
+
+  <!-- <view>
+    <view bindtap="handleGoSearchPage">
+      <view class="cu-btn bg-gradual-green shadow-blur round">搜索</view>
+    </view>
+  </view> -->
+
+  <view class="container">
+
+    <view class="body">
+      <!-- 左边分类列表 -->
+      <scroll-view class="classify" scroll-y>
+        <view wx:for="{{classifyList}}" wx:key="{{item.id}}" bindtap="handleClickClassify" data-id="{{item.id}}" class="classify-item {{selectedClassify === item.id ? 'classify-active' : ''}}">
+          {{item.desc}}
+        </view>
+      </scroll-view>
+
+      <!-- 右边小说列表 -->
+      <scroll-view class="novel" scroll-y>
+        <view wx:for="{{novelList}}" wx:key="{{item.book_name}}" class="novel-item">
+          <view class="novel-wrapper" bindtap="handleGoIntroPage" data-url="{{item.book_url}}">
+            <image src="../../images/cover.png" class="novel-cover"></image>
+            <view class="novel-novelname">{{item.book_name}}</view>
+            <view class="novel-authorname">{{item.author_name}}</view>
+          </view>
+        </view>
+      </scroll-view>
     </view>
   </view>
-
-  <view class="body">
-    <!-- 左边分类列表 -->
-    <scroll-view class="classify" scroll-y>
-      <view wx:for="{{classifyList}}" wx:key="{{item.id}}" 
-        bindtap="handleClickClassify" data-id="{{item.id}}" 
-        class="classify-item {{selectedClassify === item.id ? 'classify-active' : ''}}">
-        {{item.desc}}
-      </view>
-    </scroll-view>
-
-    <!-- 右边小说列表 -->
-    <scroll-view class="novel" scroll-y>
-      <view wx:for="{{novelList}}" wx:key="{{item.book_name}}" class="novel-item">
-        <view class="novel-wrapper" bindtap="handleGoIntroPage" data-url="{{item.book_url}}">
-          <image src="../../images/cover.png" class="novel-cover"></image>
-          <view class="novel-novelname">{{item.book_name}}</view>
-          <view class="novel-authorname">{{item.author_name}}</view>
-        </view>
-      </view>
-    </scroll-view>
-  </view>
-</view>
+</scroll-view>

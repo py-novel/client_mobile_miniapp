@@ -1,23 +1,30 @@
 <view class="container" style="background-color: {{bgColor}}">
-  <view class="navbar" 
+  <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content"></view>
+  </cu-custom>
+  <view class="cu-bar bg-white solid-bottom">
+    <view class="action">
+      <text class="cuIcon-title text-blue"></text>{{title}}
+    </view>
+  </view>
+
+  <!-- <view class="navbar" 
     style="background-color: {{bgColor}}; color: {{isDark ? '#666' : '#333'}}">
     <image class="icon" src="../../images/back-black.png"
       bindtap="handleBack"></image>
     <view class="navbar-title">{{title}}</view>
-  </view>
+  </view> -->
+
+
 
   <view class="content">
-    <rich-text class="content-text" 
-      style="font-size: {{font + 'rpx'}}; line-height: {{font * 1.5 + 'rpx'}}"
-      bindtap="handleShowMenuModal"
-      nodes="{{content}}"></rich-text>
+    <rich-text class="content-text" style="font-size: {{font + 'rpx'}}; line-height: {{font * 1.5 + 'rpx'}}" bindtap="handleShowMenuModal" nodes="{{content}}"></rich-text>
   </view>
 
   <view class="footer">
-    <view class="footer-right" 
-      bindtap="handleTurnPage" data-url="{{prevUrl}}" data-info="prev">上一章</view>
-    <view class="footer-right"
-      bindtap="handleTurnPage" data-url="{{nextUrl}}" data-info="next">下一章</view>
+    <view class="footer-right" bindtap="handleTurnPage" data-url="{{prevUrl}}" data-info="prev">上一章</view>
+    <view class="footer-right" bindtap="handleTurnPage" data-url="{{nextUrl}}" data-info="next">下一章</view>
   </view>
 </view>
 
@@ -34,7 +41,7 @@
       <image class="icon" src="../../images/tab-setting.png"></image>
       <view>设置</view>
     </view>
-    
+
     <view class="menus-tab" bindtap="handleSwitchTheme" data-theme="{{isDark}}">
       <image class="icon" src="../../images/tab-theme-{{isDark?'light':'dark'}}.png"></image>
       <view>{{isDark?'白天':'黑夜'}}</view>
@@ -60,9 +67,7 @@
     </view>
 
     <scroll-view class="setting-bg" scroll-x>
-      <view wx:for="{{bgs}}" wx:key="{{item}}"
-        bindtap="handleChangeBg" data-bg="{{item}}"
-        style="background-color: {{item}};" class="setting-bg-box"></view>
+      <view wx:for="{{bgs}}" wx:key="{{item}}" bindtap="handleChangeBg" data-bg="{{item}}" style="background-color: {{item}};" class="setting-bg-box"></view>
     </scroll-view>
   </view>
 </view>
@@ -71,29 +76,21 @@
 <view class="chapter" wx:if="{{chapterVisible}}">
   <view class="chapter-wrapper">
     <view class="chapter-bookname">{{bookName}}(共{{all.length}}章)</view>
-    
+
     <view class="chapter-label">
       <view>目录</view>
       <view bindtap="handleSwitchPage" style="color: rgb(142, 142, 142)">切换翻页</view>
-      <image bindtap="handleChangeOrder" class="icon70" 
-        src="../../images/chapter-{{order}}.png"></image>
+      <image bindtap="handleChangeOrder" class="icon70" src="../../images/chapter-{{order}}.png"></image>
     </view>
-    
-    <scroll-view wx:if="{{!isShowPage}}" class="chapter-list" 
-      scroll-y style="height: 800rpx;">
-      <view wx:for="{{list}}" wx:key="{{item.url}}"
-        bindtap="handleClickChapter" data-url="{{item.url}}" id="{{item.uuid}}"
-        class="chapter-item {{title===item.name?'chapter-current':''}}">
+
+    <scroll-view wx:if="{{!isShowPage}}" class="chapter-list" scroll-y style="height: 800rpx;">
+      <view wx:for="{{list}}" wx:key="{{item.url}}" bindtap="handleClickChapter" data-url="{{item.url}}" id="{{item.uuid}}" class="chapter-item {{title===item.name?'chapter-current':''}}">
         {{item.name}}
       </view>
     </scroll-view>
 
-    <scroll-view wx:else class="chapter-list" 
-      scroll-y style="height: 800rpx;">
-      <view wx:for="{{page}}" wx:key="{{item.id}}"
-        bindtap="handleBigPage" data-start="{{item.start}}" data-end="{{item.end}}"
-        data-id="{{item.id}}"
-        class="chapter-item">
+    <scroll-view wx:else class="chapter-list" scroll-y style="height: 800rpx;">
+      <view wx:for="{{page}}" wx:key="{{item.id}}" bindtap="handleBigPage" data-start="{{item.start}}" data-end="{{item.end}}" data-id="{{item.id}}" class="chapter-item">
         {{item.desc}}
       </view>
     </scroll-view>

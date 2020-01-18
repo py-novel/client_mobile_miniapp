@@ -18,14 +18,14 @@ Page({
   onLoad: function (options) {
     const that = this
     wx.login({
-      success (res) {
+      success(res) {
         if (res.code) {
           request({
             url: api.GET_USER_WXINFO,
             data: { code: res.code },
           }).then(res => {
             var { nickName = '', avatarUrl = '' } = res
-            that.setData({ 
+            that.setData({
               'userInfo.nickName': nickName,
               'userInfo.avatarUrl': avatarUrl,
             })
@@ -81,7 +81,7 @@ Page({
     request({
       url: api.EDIT_USER_INFO,
       method: 'put',
-      data: { 
+      data: {
         user_id: userId,
         nickname: nickName,
         avatar_url: avatarUrl,
@@ -145,7 +145,7 @@ Page({
   handleGreeting: function () {
     var hour = new Date().getHours()
     var greeting = ''
-    
+
     if (hour < 6) { greeting = '凌晨好！' }
     else if (hour < 9) { greeting = '早上好！' }
     else if (hour < 12) { greeting = '上午好！' }
@@ -155,7 +155,7 @@ Page({
     else if (hour < 22) { greeting = '晚上好！' }
     else { greeting = '夜里好！' }
 
-    this.setData({ greeting }) 
+    this.setData({ greeting })
   },
 
 })
