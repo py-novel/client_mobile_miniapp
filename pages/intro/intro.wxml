@@ -1,21 +1,28 @@
-<view class="navbar">
-  <image class="icon" src="../../images/back-black.png"
-    bindtap="handleBack"></image>
-  公羊阅读
-</view>
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">详情</view>
+  </cu-custom>
 
-<view class="info">
-  <image src="../../images/cover.png" class="cover"></image>
-  <view class="info-right">
-    <view class="bookname">{{bookName}}</view>
-    <view class="authorname">作者：{{authorName}}</view>
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+<view class="solids-bottom flex align-center">
+    <!-- <view class="padding"></view> -->
+    <view class="flex-sub text-center">
+      <view class="solid-bottom text-xl">
+        <text class="text-black text-bold">{{bookName}}</text>
+      </view>
+      <view class="padding">作者：{{authorName}}</view>
+    </view>
+</view>
+  <view class="solids-bottom padding-xs flex align-center">
+    <view class="flex-sub text-center">
+    <view>
+      <text class="solid-bottom text-df padding-xs text-grey">最后更新时间：{{lastUpdateAt}}</text>
+    </view>
+    <view>
+      <text class="solid-bottom text-df padding-xs text-grey">分类：{{classifyName}}</text>
+    </view>
+    </view>
   </view>
-</view>
-
-<view class="classify">
-  <view>最后更新时间：{{lastUpdateAt}}</view>
-  <view>分类：{{classifyName}}</view>
-</view>
 
 <view class="desc">
   <view class="desc-title">小说简介</view>
@@ -26,4 +33,4 @@
   <view class="btn-item btn-shelf"
     bindtap="handleJoinShelf">加入书架</view>
 </view>
-
+</view>
