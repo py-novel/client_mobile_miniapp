@@ -47,6 +47,28 @@ Page({
     this.setData({ bookName, novelId })
     this.handleGetNovelContent(chapterUrl)  
     this.handleGetChapterList(novelUrl)  
+
+    // 初始化设置
+    this.handleInitSettings()
+  },
+
+  /**
+   * wx.navigateBack() 时触发 onUnload 声明周期函数
+   * 将用户当前阅读配置存到本地缓存
+   */
+  onUnload: function () {
+    const { bgColor, font, bgs } = this.data
+    wx.setStorageSync('bgColor', bgColor)
+    wx.setStorageSync('font', font)
+  },
+
+  /**
+   * 初始化用户阅读设置：字体大小、颜色、背景颜色
+   */
+  handleInitSettings: function () {
+    const bgColor = wx.getStorageSync('bgColor') || '#fff'
+    const font = wx.getStorageSync('font') || 32
+    this.setData({ bgColor, font })
   },
   
   /**
