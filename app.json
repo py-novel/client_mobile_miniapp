@@ -14,6 +14,9 @@
     "navigationStyle": "custom",
     "enablePullDownRefresh": false
   },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
   "tabBar": {
     "color": "#626567",
     "selectedColor": "#2A8CE5",

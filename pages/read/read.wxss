@@ -14,14 +14,6 @@
   color: #666;
 }
 
-.footer {
-  height: 60rpx;
-  line-height: 60rpx;
-  box-shadow: 0 -2rpx 10rpx #cccccc;
-  font-size: 30rpx;
-  display: flex;
-  justify-content: flex-end;
-}
 .footer-right {
   width: 33%;
   text-align: center;

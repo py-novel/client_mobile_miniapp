@@ -1,6 +1,6 @@
 var api = require('../../utils/api.js')
 var { request } = require('../../utils/request.js')
-
+const app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -8,6 +8,8 @@ Page({
   data: {
     classifyList: [],
     selectedClassify: '',
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
     novelList: [],
   },
 
